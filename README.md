@@ -11,8 +11,26 @@ Proje kapsamında kare matris çarpım işlemi (C = A x B), hem düşük seviyel
 
 ## Sistem Gereksinimleri
 Ubuntu (veya WSL) ortamında kodu derleyip çalıştırabilmek için aşağıdaki paketlerin kurulu olması gerekmektedir:
+
 **C Ortamı İçin:**
 ```bash
 sudo apt update
 sudo apt install openmpi-bin libopenmpi-dev
 sudo apt install libopenblas-dev
+```
+
+**Python Ortamı İçin:**
+```bash
+pip install mpi4py numpy
+```
+
+**C Kodunu Çalıştırma:**
+```bash
+mpicc -O3 -ffast-math matrix_mpi.c -o matrix_mpi_c -lopenblas
+mpiexec -n 4 ./matrix_mpi_c
+```
+
+**Python Kodunu Çalıştırma:**
+```bash
+mpiexec -n 4 python3 matrix_mpi.py
+```
